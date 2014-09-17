@@ -119,4 +119,7 @@ public abstract class SimpleMediaPlayer extends BaseMediaPlayer implements
             return mOnInfoListener.onInfo(this, what, extra);
         return false;
     }
+
+    public void setLogEnabled(boolean enable) {
+    }
 }
