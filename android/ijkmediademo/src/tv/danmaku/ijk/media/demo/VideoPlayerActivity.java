@@ -97,7 +97,7 @@ public class VideoPlayerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player);
 
-		mVideoPath = "http://live.gslb.letv.com/gslb?stream_id=btv6_800&tag=live&ext=m3u8";
+		mVideoPath = "http://cc.acgvideo.com/201410292010/b029885f2a5cca80fa0f2847eed1dbe4/f/14/2433510-1.mp4";
 
 		Intent intent = getIntent();
 		String intentAction = intent.getAction();
