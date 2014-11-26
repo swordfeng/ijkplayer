@@ -1,8 +1,8 @@
 /*****************************************************************************
- * ijksdl_vout_android_nativewindow.h
+ * ijksdl_codec_android_mediacodec_java.h
  *****************************************************************************
  *
- * copyright (c) 2013 Zhang Rui <bbcallen@gmail.com>
+ * copyright (c) 2014 Zhang Rui <bbcallen@gmail.com>
  *
  * This file is part of ijkPlayer.
  *
@@ -21,17 +21,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef IJKSDL_ANDROID__IJKSDL_VOUT_ANDROID_NATIVEWINDOW_H
-#define IJKSDL_ANDROID__IJKSDL_VOUT_ANDROID_NATIVEWINDOW_H
+#ifndef IJKSDL_ANDROID__ANDROID_CODEC_ANDROID_MEDIACODEC_JAVA_H
+#define IJKSDL_ANDROID__ANDROID_CODEC_ANDROID_MEDIACODEC_JAVA_H
 
-#include "../ijksdl_stdinc.h"
-#include "../ijksdl_vout.h"
+#include "ijksdl_codec_android_mediacodec.h"
 
-typedef struct ANativeWindow   ANativeWindow;
-typedef struct SDL_AMediaCodec SDL_AMediaCodec;
+typedef struct ASDK_MediaCodec ASDK_MediaCodec;
 
-SDL_Vout *SDL_VoutAndroid_CreateForANativeWindow();
-void SDL_VoutAndroid_SetNativeWindow(SDL_Vout *vout, ANativeWindow *native_window);
-void SDL_VoutAndroid_setAMediaCodec(SDL_Vout *vout, SDL_AMediaCodec *acodec);
+int SDL_AMediaCodecJava__loadClass(JNIEnv *env);
+
+SDL_AMediaCodec  *SDL_AMediaCodecJava_createByCodecName(JNIEnv *env, const char *codec_name);
+SDL_AMediaCodec  *SDL_AMediaCodecJava_createDecoderByType(JNIEnv *env, const char *mime_type);
+jobject           SDL_AMediaCodecJava_getObject(JNIEnv *env, const SDL_AMediaCodec *thiz);
 
 #endif

@@ -1,8 +1,8 @@
 /*****************************************************************************
- * ijksdl_vout_android_nativewindow.h
+ * ijksdl_vout_overlay_android_mediacodec.h
  *****************************************************************************
  *
- * copyright (c) 2013 Zhang Rui <bbcallen@gmail.com>
+ * copyright (c) 2014 Zhang Rui <bbcallen@gmail.com>
  *
  * This file is part of ijkPlayer.
  *
@@ -21,17 +21,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef IJKSDL_ANDROID__IJKSDL_VOUT_ANDROID_NATIVEWINDOW_H
-#define IJKSDL_ANDROID__IJKSDL_VOUT_ANDROID_NATIVEWINDOW_H
+#ifndef IJKSDL_ANDROID__IJKSDL_VOUT_OVERLAY_ANDROID_MEDIACODEC_H
+#define IJKSDL_ANDROID__IJKSDL_VOUT_OVERLAY_ANDROID_MEDIACODEC_H
 
 #include "../ijksdl_stdinc.h"
 #include "../ijksdl_vout.h"
 
-typedef struct ANativeWindow   ANativeWindow;
-typedef struct SDL_AMediaCodec SDL_AMediaCodec;
+typedef struct SDL_AMediaCodec           SDL_AMediaCodec;
+typedef struct SDL_AMediaCodecBufferInfo SDL_AMediaCodecBufferInfo;
 
-SDL_Vout *SDL_VoutAndroid_CreateForANativeWindow();
-void SDL_VoutAndroid_SetNativeWindow(SDL_Vout *vout, ANativeWindow *native_window);
-void SDL_VoutAndroid_setAMediaCodec(SDL_Vout *vout, SDL_AMediaCodec *acodec);
+SDL_VoutOverlay *SDL_VoutAMediaCodec_CreateOverlay(int width, int height, Uint32 format, SDL_Vout *vout);
+
+bool SDL_VoutOverlayAMediaCodec_isKindOf(SDL_VoutOverlay *overlay);
+int  SDL_VoutOverlayAMediaCodec_attachFrame(
+     SDL_VoutOverlay *overlay,
+     SDL_AMediaCodec *acodec,
+     int output_buffer_index,
+     SDL_AMediaCodecBufferInfo *buffer_info);
+int  SDL_VoutOverlayAMediaCodec_releaseFrame(SDL_VoutOverlay *overlay, SDL_AMediaCodec *acodec, bool render);
 
 #endif
