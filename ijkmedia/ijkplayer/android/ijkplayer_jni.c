@@ -493,7 +493,7 @@ static int
 format_control_message(void *opaque, int type, void *data, size_t data_size)
 {
     JNIEnv *env = NULL;
-    SDL_AndroidJni_SetupThreadEnv(&env);
+    SDL_JNI_SetupThreadEnv(&env);
 
     jobject weak_thiz = (jobject) opaque;
     if (weak_thiz == NULL)

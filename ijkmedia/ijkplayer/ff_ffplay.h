@@ -66,8 +66,17 @@ long      ffp_get_duration_l(FFPlayer *ffp);
 long      ffp_get_playable_duration_l(FFPlayer *ffp);
 
 /* for internal usage */
+int       ffp_packet_queue_get_or_buffering(FFPlayer *ffp, PacketQueue *q, AVPacket *pkt, int *serial, int *finished);
+bool      ffp_is_flush_packet(FFPlayer *ffp, AVPacket *pkt);
+
+Frame    *ffp_frame_queue_peek_writable(FrameQueue *f);
+void      ffp_frame_queue_push(FrameQueue *f);
+
 void      ffp_toggle_buffering_l(FFPlayer *ffp, int start_buffering);
 void      ffp_toggle_buffering(FFPlayer *ffp, int start_buffering);
 void      ffp_check_buffering_l(FFPlayer *ffp);
+
+int       ffp_video_thread(FFPlayer *ffp);
+int       ffp_video_refresh_thread(FFPlayer *ffp);
 
 #endif
